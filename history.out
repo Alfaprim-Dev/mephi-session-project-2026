@@ -1,0 +1,28 @@
+  156  lsblk
+  157  sudo fdisk /dev/sdb
+  158  sudo partprobe /dev/sdb
+  159  lsblk
+  160  sudo mkfs.ext4 -L MEPHI_WEB /dev/sdb1
+  161  sudo blkid /dev/sdb1
+  162  sudo mkdir -p /mephi-web
+  163  echo "LABEL=MEPHI_WEB /mephi-web ext4 defaults 0 0" | sudo tee -a /etc/fstab
+  164  cat /etc/fstab
+  165  sudo mount -a
+  166  sudo systemctl daemon-reload
+  167  lsblk
+  168  sudo systemctl enable --now nginx
+  169  sudo systemctl status nginx
+  170  sudo journalctl -u nginx -b > ~/journalctl.out
+  171  clear
+  172  sudo groupadd developers
+  173  sudo useradd -u 5501 -G developers user1
+  174  sudo useradd -u 5502 -G developers user2
+  175  sudo useradd -u 5503 -G developers user3
+  176  sudo groupadd -g 4444 curators
+  177  sudo useradd -G curators curator1
+  178  sudo useradd -G curators curator2
+  179  id user1
+  180  id user2
+  181  id curator2
+  182  cat /etc/passwd
+  183  history > ~/history.out
